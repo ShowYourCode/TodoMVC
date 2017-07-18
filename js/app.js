@@ -63,7 +63,29 @@
 			}	
 		}
 
+		//点击删除完成的，留下为完成的
+		$scope.clearCompleted=function(){
+			// console.log(1);
+			var newArr=[];
+			for(var i =0;i<$scope.arr.length;i++){
+				if(!$scope.arr[i].isFinished){
+					newArr.push($scope.arr[i]);
+				}
+			}
+			$scope.arr=newArr;
+		}
 
+		//点击按钮在没有任务完成是隐藏，有任务完成时显示；
+		$scope.hasCompleted=function(){
+			var ret=false;
+			for(var i =0;i<$scope.arr.length;i++){
+				if($scope.arr[i].isFinished){
+					ret=$scope.arr[i].isFinished;
+					break;
+				}
+			}
+			return ret;
+		}
 
 	}])
 })(angular);
