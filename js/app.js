@@ -54,6 +54,16 @@
 		};
 
 
+		//批量切换任务的选中状态
+		
+		$scope.isChecked=false;
+		$scope.check=function(){
+			for(var i =0;i<$scope.arr.length;i++){
+				$scope.arr[i].isFinished=$scope.isChecked;
+			}	
+		}
+
+
 
 	}])
 })(angular);
