@@ -47,11 +47,11 @@
 
 		$scope.edit=function(id){
 			$scope.editingId=id;
-		}
+		};
 
 		$scope.editSave=function(){
 			$scope.editingId=-1;
-		}
+		};
 
 
 
