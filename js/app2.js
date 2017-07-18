@@ -1,0 +1,41 @@
+(function(angular){
+    'use strict'
+    angular
+    .module('todoApp',[])
+    .controller('TodoController',['$scope',function($scope){
+        $scope.itemList=[
+            {
+                id:1,name:'放屁',isFinished:false
+            },
+            {
+				id:2,name:'你啊？',isFinished:false
+			},
+            {
+				id:3,name:'他啊',isFinished:false
+			},
+            {
+				id:4,name:'谁啊',isFinished:false
+			},
+        ]
+
+        $scope.taskName='';
+        $scope.add=function(){
+            if($scope.taskName.trim()===''){
+                return;
+            }
+            var id,
+                length=$scope.itemList.length;
+            if(length===0){
+                id=1;
+            }else{
+                id=length+1;
+            }
+            $scope.itemList.push({
+                id:id,
+                name:$scope.taskName,
+                isFinished:false
+            })
+            $scope.taskName='';
+        }
+    }])
+})(angular)
