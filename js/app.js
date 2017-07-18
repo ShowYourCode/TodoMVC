@@ -2,7 +2,7 @@
 	'use strict';
 	angular
 	.module('todoApp',[])
-	.controller('TodoController',['$scope',function($scope){
+	.controller('TodoController',['$scope','$location',function($scope,$location){
 		$scope.arr=[
 			{
 				id:1,name:'抽烟',isFinished:false
@@ -86,6 +86,38 @@
 			}
 			return ret;
 		}
+
+
+		//计算没有完成的任务，并在下方显示
+		$scope.calCount=function(){
+			var count=0;
+			for(var i =0;i<$scope.arr.length;i++){
+				if(!$scope.arr[i].isFinished){
+					count++;
+				}
+			}
+			return count;
+		}
+
+
+		//通过地址栏锚点，决定显示的任务的类型
+		$scope.status=undefined;
+
+		$scope.location=$location;
+		//$watch中监视的只能是$scope中的属性，所以把$location赋值给$scope.location,然后在$watch中监视$location的变化
+		$scope.$watch('location.url()',function(newVal,oldVal){
+			switch(newVal){
+				case '/active':
+					$scope.status=false;
+					break;
+				case '/completed':
+					$scope.status=true;
+					break;
+				default:
+					$scope.status=undefined;
+					break;
+			}
+		})
 
 	}])
 })(angular);
