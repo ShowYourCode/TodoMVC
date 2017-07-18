@@ -3,6 +3,7 @@
 	angular
 	.module('todoApp',[])
 	.controller('TodoController',['$scope','$location',function($scope,$location){
+		//赋值一个数组，给当前页面也最初的展示效果
 		$scope.arr=[
 			{
 				id:1,name:'抽烟',isFinished:false
@@ -17,6 +18,7 @@
 				id:4,name:'大宝剑',isFinished:true
 			}
 		];
+		//form表单  添加任务名称
 		$scope.taskName='';
 		$scope.add=function(){
 			if($scope.taskName.trim()===''){
@@ -35,6 +37,7 @@
 			})
 			$scope.taskName='';
 		}
+		//通过绑定的id删除要删除的项
 		$scope.del=function(id){
 			for(var i=0;i<$scope.arr.length;i++){
 				if($scope.arr[i].id===id){
@@ -43,6 +46,7 @@
 			}
 		}
 
+		//通过id对当前任务进行编辑并保存
 		$scope.editingId=-1;
 
 		$scope.edit=function(id){
